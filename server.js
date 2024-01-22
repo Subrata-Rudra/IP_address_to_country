@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const geoip = require("geoip-country");
 const dotenv = require("dotenv");
+const connectDb = require("./config/db");
 const User = require("./model/userModel");
 
 dotenv.config();
