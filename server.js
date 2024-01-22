@@ -4,8 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const geoip = require("geoip-country");
 const dotenv = require("dotenv");
-const connectDb = require("./config/db");
-const Country = require("./model/countryModel");
+const User = require("./model/userModel");
 
 dotenv.config();
 connectDb();
@@ -26,7 +25,12 @@ app.get("/", async (req, res) => {
     return;
   }
   try {
-    await Country.create({ country: geo.country });
+    const isExist = await User.findOne({ ip });
+    if (isExist) {
+      await User.findOneAndUpdate({ ip: ip }, { $inc: { visitCount: 1 } });
+    } else {
+      await User.create({ ip: ip, country: geo.country, visitCount: 0 });
+    }
     console.log(
       "-----------------------------------------------------------------"
     );
