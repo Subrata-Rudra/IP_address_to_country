@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema(
   {
     ip: { type: String, unique: true },
     country: { type: String },
-    visitCount: { type: Number, default: 0 },
+    visitCount: { type: Number, default: 1 },
   },
   { timestamps: true }
 );
