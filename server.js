@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
     if (isExist) {
       await User.findOneAndUpdate({ ip: ip }, { $inc: { visitCount: 1 } });
     } else {
-      await User.create({ ip: ip, country: geo.country, visitCount: 0 });
+      await User.create({ ip: ip, country: geo.country, visitCount: 1 });
     }
   } catch (error) {
     console.error(error);
