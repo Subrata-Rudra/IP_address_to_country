@@ -32,13 +32,6 @@ app.get("/", async (req, res) => {
     } else {
       await User.create({ ip: ip, country: geo.country, visitCount: 0 });
     }
-    console.log(
-      "-----------------------------------------------------------------"
-    );
-    console.log("Geo is: ", geo);
-    console.log(
-      "-----------------------------------------------------------------"
-    );
   } catch (error) {
     console.error(error);
   }
